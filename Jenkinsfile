@@ -4,7 +4,8 @@ pipeline {
     stages {
         stage('Clone') {
             steps {
-                git credentialsId: 'github-creds',
+                git branch: 'main',
+                    credentialsId: 'github-creds',
                     url: 'https://github.com/zakariya-ab/devops-lab.git'
             }
         }
