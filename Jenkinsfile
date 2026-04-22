@@ -3,12 +3,6 @@ pipeline {
 
     stages {
 
-        stage('Clone') {
-            steps {
-                git 'https://github.com/zakariya-ab/devops-lab.git'
-            }
-        }
-
         stage('Build Docker') {
             steps {
                 sh 'docker build -t webapp:latest .'
@@ -21,6 +15,5 @@ pipeline {
                 sh 'kubectl apply -f service.yaml'
             }
         }
-
     }
 }
