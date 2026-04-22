@@ -2,17 +2,20 @@ pipeline {
     agent any
 
     stages {
-
-        stage('Build Docker') {
+        stage('Clone') {
             steps {
-                sh 'docker build -t webapp:latest .'
+                git 'https://github.com/zakariya-ab/devops-lab.git'
             }
         }
-
+        stage('Build Docker') {
+            steps {
+                bat 'docker build -t webapp:latest .'
+            }
+        }
         stage('Deploy Kubernetes') {
             steps {
-                sh 'kubectl apply -f deployment.yaml'
-                sh 'kubectl apply -f service.yaml'
+                bat 'kubectl apply -f deployment.yaml'
+                bat 'kubectl apply -f service.yaml'
             }
         }
     }
